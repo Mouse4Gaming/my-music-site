@@ -3,7 +3,7 @@ import { musicData } from './data';
 import './App.css';
 
 // 零件範本 (印章)
-function MusicCard({ title, img, link }) {
+function MusicCard({ title, img, link, artist }) {
   const handlePlay = () => {
     if (link) {
       const cleanLink = link.split('&')[0];
