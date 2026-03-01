@@ -1,0 +1,75 @@
+body {
+    background-color: #000000; 
+    color: white;             
+    font-family: Arial, sans-serif; 
+    padding: 50px;
+}
+body {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;       
+}
+.music-card {
+    background-color: #1e1e1e; 
+    border-radius: 24px;       
+    padding: 20px;
+    width: 250px;              
+    border: 1px solid #333;}
+.album-art {
+    width: 100%;          
+    height: auto;         
+    border-radius: 15px;  
+    margin-bottom: 15px;  
+    display: block;}
+.music-card {
+
+    transition: transform 0.3s ease; 
+    cursor: pointer;                 
+}
+.music-card:hover {
+    transform: translateY(-15px);    
+    border-color: #078533;           
+}
+.category-tag {
+    background-color: #333;
+    color: #1DB954; /* Spotify 綠 */
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.menu-icon {
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+.sidebar {
+    height: 100%;
+    width: 0; /* 預設寬度為 0 (隱藏) */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s; /* 開關時的平滑動畫 */
+    padding-top: 60px;
+}
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+}

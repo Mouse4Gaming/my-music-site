@@ -1,0 +1,247 @@
+body {
+    background-color: #000000; 
+    color: white;             
+    font-family: Arial, sans-serif; 
+    padding: 50px;
+}
+body {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;       
+}
+.music-card {
+    background-color: #1e1e1e; 
+    border-radius: 24px;       
+    padding: 20px;
+    width: 250px;              
+    border: 1px solid #333;}
+.album-art {
+    width: 100%;          
+    height: auto;         
+    border-radius: 15px;  
+    margin-bottom: 15px;  
+    display: block;}
+.music-card {
+
+    transition: transform 0.3s ease; 
+    cursor: pointer;                 
+}
+.music-card:hover {
+    transform: translateY(-15px);    
+    border-color: #078533;           
+}
+.category-tag {
+    background-color: #333;
+    color: #1DB954; /* Spotify 綠 */
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.menu-icon {
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+.sidebar {
+    height: 100%;
+    width: 0; /* 預設寬度為 0 (隱藏) */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s; /* 開關時的平滑動畫 */
+    padding-top: 60px;
+}
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+}
+.card-list {
+  display: flex;        
+  flex-wrap: wrap;     
+  gap: 20px;           
+  padding: 20px 0;
+}
+/* 分類標籤的容器 */
+.genre-filter {
+  display: flex;       /* 讓裡面的標籤變成彈性盒子排排站 */
+  gap: 12px;           /* 設定標籤之間的間距 */
+  margin: 20px 0;      /* 讓這一排標籤跟標題、卡片保持距離 */
+}
+
+/* 單個標籤的長相 */
+.tag {
+  padding: 6px 16px;
+  background-color: #333;
+  color: #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.6s;    /* 讓滑鼠移上去的變色效果變平滑 */
+}
+
+.tag:hover {
+  background-color: #444;
+  color: white; /* 點選或滑入變綠色 */
+}
+
+.tag.active {
+  background-color: #1DB954; /* Spotify 綠 */
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+}
+
+.search-container {
+  margin: 20px 0;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 25px; /* 讓它變圓潤 */
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-input:focus {
+  border-color: #1DB954; /* 點擊時變綠色 */
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
+}
+/* 側邊欄初始狀態：藏在螢幕左邊 (-250px) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; 
+  width: 250px;
+  height: 100%;
+  background-color: #121212;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+  transition: 0.3s ease; /* 滑動動畫 */
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* 當側邊欄擁有 .open 類名時，回到 left: 0 */
+.sidebar.open {
+  left: 0;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  float: right;
+  cursor: pointer;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.sidebar-nav li {
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.sidebar-nav li:hover {
+  color: #1DB954;
+}
+/* 1. 初始狀態：側邊欄要躲在螢幕左邊邊界外 */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* 原理：負數代表向左移出螢幕。如果寬度是 250，就移 -250 */
+  width: 250px;
+  height: 100vh;
+  background-color: #121212;
+  transition: 0.3s; /* 原理：這會讓 left 數值變化時產生滑動效果 */
+  z-index: 1000;
+}
+
+/* 2. 當 React 把狀態改為 true，class 會多一個 .open */
+.sidebar.open {
+  left: 0; /* 原理：回到 0，側邊欄就會從左邊滑進來 */
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* 半透明黑 */
+  backdrop-filter: blur(5px); /* 高級感關鍵：讓背景模糊 */
+  z-index: 999; /* 數字要比一般內容大，但比 sidebar 小 */
+  transition: opacity 0.3s ease;
+}
+.img-container {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* 懸浮時圖片稍微放大 */
+.album-art {
+  transition: transform 0.3s ease;
+}
+
+.img-container:hover .album-art {
+  transform: scale(1.1);
+}
+
+/* 懸浮時顯示播放圖示 */
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 40px;
+  opacity: 0; /* 平時隱藏 */
+  transition: 0.3s;
+}
+
+.img-container:hover .play-overlay {
+  opacity: 1; /* 滑過去才出現 */
+}

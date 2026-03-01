@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div class="menu-icon" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+
+<div id="side-menu" class="sidebar">
+    <a href="#">首頁</a>
+    <a href="#">我的收藏</a>
+    <a href="#">分類清單</a>
+</div>
+<script>
+function toggleMenu() {
+    var menu = document.getElementById("side-menu");
+    if (menu.style.width === "250px") {
+        menu.style.width = "0";
+    } else {
+        menu.style.width = "250px";
+    }
+}
+</script>
+<body>
+    <h1>My music collection</h1>
+    <div class="music-card">
+        <img src="push.jpg" class="album-art">
+        <span class="category-tag">Electronic</span>
+        <h2>Push the feeling on</h2>
+        <p>近期最喜歡的一首歌</p>
+        </div>
+        <div class="music-card">
+            <img src="drift.jpg" class="album-art">
+            <span class="category-tag">No lyrics</span>
+            <span class="category-tag">Lo-fi</span>
+            <h2>Drift</h2>
+            <p>從影音平台上的意外收穫</p>
+            </div>
+            <div class="music-card">
+                <img src="washing machine heart.jpg" class="album-art">
+                <span class="category-tag">Electronic</span>
+                <h2>Washing machine heart</h2>
+                <p>有強烈的節拍感</p>
+                </div>
+                <div class="music-card">
+                    <img src="savage garden.jpg" class="album-art">
+                    <span class="category-tag">90's</span>
+                    <h2>I want you</h2>
+                    <p>是一首有年紀但歷久不衰的金曲</p>
+                </div>
+</body>
+</html>
