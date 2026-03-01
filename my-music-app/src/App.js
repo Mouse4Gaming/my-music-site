@@ -20,7 +20,7 @@ function MusicCard({ title, img, link, artist }) {
         <div className="play-overlay">▶</div>
       </div>
       <h2>{title}</h2>
-      <p className="artist-name">{artist}</p>
+      <p className="artist-name" style={{ color: 'red', fontSize: '20px' }}>{artist}</p>
     </div>
   );
 }
