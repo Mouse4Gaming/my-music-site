@@ -5,22 +5,20 @@ import './App.css';
 // 零件範本 (印章)
 function MusicCard({ title, img, link }) {
   const handlePlay = () => {
-    // 原理：window.open(網址, 方式) 
-    // '_blank' 代表在「新分頁」打開，這對使用者體驗最好，因為他們不會離開你的網站
     if (link) {
       const cleanLink = link.split('&')[0];
-      window.open(link, '_blank');
+      window.open(cleanLink, '_blank');
     } else {
       alert("這首歌暫時沒有播放連結喔！");
     }
   };
+
   return (
     <div className="music-card">
       <div className="img-container" onClick={handlePlay}>
-      <img src={img} className="album-art" alt={title} />
-      {/* 這裡可以加一個播放小圖示的視覺提示 */}
+        <img src={img} className="album-art" alt={title} />
         <div className="play-overlay">▶</div>
-        </div>
+      </div>
       <h2>{title}</h2>
     </div>
   );
@@ -32,16 +30,6 @@ function App() {
   const [activeGenre, setActiveGenre] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen,  setIsSidebarOpen] = useState(false);
- 
-
-
-  // 2. 資料清單 (原物料)
-  const songs = [
-    { title: "Push the feeling on", genre: "Electronic", desc: "近期最喜歡的一首歌", img: "push.jpg" },
-    { title: "Drift", genre: "Lo-fi", desc: "從影音平台上的意外收穫", img: "drift.jpg" },
-    { title: "Washing machine heart", genre: "Rock", desc: "這首歌節拍很強烈", img: "heart.jpg" },
-    { title: "I want you", genre: "Classic", desc: "歷久不衰的金曲", img: "want.jpg" }
-  ];
 
   // 3. 過濾邏輯 (篩選器)
        const filteredSongs = musicData.filter(song => {
