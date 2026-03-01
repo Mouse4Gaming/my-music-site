@@ -20,6 +20,7 @@ function MusicCard({ title, img, link }) {
         <div className="play-overlay">▶</div>
       </div>
       <h2>{title}</h2>
+      <p className="artist-name">{artist}</p>
     </div>
   );
 }
@@ -96,6 +97,7 @@ function App() {
             title={song.title}  
             img={song.img} 
             link={song.link}
+            artist={song.artist}
           />
         ))}
       </div> {/* 這是對應 card-list 的關閉 */}
