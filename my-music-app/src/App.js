@@ -17,6 +17,17 @@ function MusicCard({ title, img, link, artist,isFavorite, onToggleFavorite }) {
     <div className="music-card">
       <div className="img-container" onClick={handlePlay}>
         <img src={img} className="album-art" alt={title} />
+
+        <button
+      className={`fav-btn ${isFavorite ? 'active' : ''}`}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        onToggleFavorite();
+      }}
+      >
+        {isFavorite ? '❤️' : '🤍'}
+      </button>
         <div className="play-overlay">▶</div>
       </div>
       <h2>{title}</h2>
@@ -28,22 +39,23 @@ function MusicCard({ title, img, link, artist,isFavorite, onToggleFavorite }) {
 // 主程式 (工廠)
 function App() {
   // 1. 定義狀態 (開關)
+  const [favorites, setFavorites] = useState([]);
   const [activeGenre, setActiveGenre] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen,  setIsSidebarOpen] = useState(false);
-  const [favorites, setFvorites] = useState([]);
+   const toggleFavorite = (id) => {
+      setFavorites((prev) =>
+      prev.includes(id)
+    ? prev.filter(favId => favId !== id)
+    : [...prev, id]
+);
+    };
+  
 
   // 3. 過濾邏輯 (篩選器)
     const filteredSongs = musicData.filter(song => {
     const isGenreMatch = activeGenre === 'All' || song.genre === activeGenre;
     const isSearchMatch = song.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const toggleFavorite = (id) => {
-      setFavorites((prev) =>
-      prev.includes(id)
-    ? prev.fliter(favId => favId !== id)
-    : [...prev, id]
-);
-    };
     return isGenreMatch && isSearchMatch;
   });
   return (
@@ -96,16 +108,6 @@ function App() {
           </span>
         ))}
       </nav>
-      <button
-      className={`fav-btn ${isFavorite ? 'active' : ''}`}
-      onClick={(e) => {
-        e.stopPropagation();
-        onToggleFavorite();
-      }}
-      >
-        {isFavorite ? '❤️' : '🤍'}
-      </button>
-
       <div className="card-list">
         {filteredSongs.map((song, index) => (
           <MusicCard 
