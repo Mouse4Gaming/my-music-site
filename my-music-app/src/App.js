@@ -3,7 +3,7 @@ import { musicData } from './data';
 import './App.css';
 
 // 零件範本 (印章)
-function MusicCard({ title, img, link, artist }) {
+function MusicCard({ title, img, link, artist,isFavorite, onToggleFavorite }) {
   const handlePlay = () => {
     if (link) {
       const cleanLink = link.split('&')[0];
@@ -31,11 +31,19 @@ function App() {
   const [activeGenre, setActiveGenre] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen,  setIsSidebarOpen] = useState(false);
+  const [favorites, setFvorites] = useState([]);
 
   // 3. 過濾邏輯 (篩選器)
-       const filteredSongs = musicData.filter(song => {
+    const filteredSongs = musicData.filter(song => {
     const isGenreMatch = activeGenre === 'All' || song.genre === activeGenre;
     const isSearchMatch = song.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const toggleFavorite = (id) => {
+      setFavorites((prev) =>
+      prev.includes(id)
+    ? prev.fliter(favId => favId !== id)
+    : [...prev, id]
+);
+    };
     return isGenreMatch && isSearchMatch;
   });
   return (
@@ -88,12 +96,23 @@ function App() {
           </span>
         ))}
       </nav>
-      
+      <button
+      className={`fav-btn ${isFavorite ? 'active' : ''}`}
+      onClick={(e) => {
+        e.stopPropagation();
+        onToggleFavorite();
+      }}
+      >
+        {isFavorite ? '❤️' : '🤍'}
+      </button>
 
       <div className="card-list">
         {filteredSongs.map((song, index) => (
           <MusicCard 
             key={song.id} 
+            {...song}
+            isFavorite={favorites.includes(song.id)}
+            onToggleFavorite={() =>toggleFavorite(song.id)}
             title={song.title}  
             img={song.img} 
             link={song.link}
