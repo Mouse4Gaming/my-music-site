@@ -13,5 +13,8 @@ export const musicData = [
   { id: 10,title: "Let it happen", artist: "Tame Impala", genre: "Classic", img:"happen.jpg", link:"https://youtu.be/pFptt7Cargc?si=bXYOtRkc2_y4S831"},
   { id: 11,title: "Night work", artist: "Sione", genre: "Lo-fi", img:"nightwork.jpg", link:"https://youtu.be/YuKp2--uBkM?si=I0vW_Z5oKnvA_C_T"},
   { id: 12,title: "Fallen down", artist: "Toby Fox", genre: "Lo-fi", img:"fallen.jpg", link:"https://youtu.be/qH5hM1ILuFQ?si=2Z086JLkyLlpCd36"},
+  { id: 13,title: "The other side of paradise", artist: "Glass animals", genre: "Rock", img: "paradise.jpg", link: "https://youtu.be/RMPX_vgqQnM?si=vCo9FcFMFmVPWLG4"},
+  { id: 14,title: "Heat waves", artist: "Glass animals", genre: "Rock", img: "heatwaves.jpg", link: "https://youtu.be/pzeefqfSMjY?si=alFRq5Lm8F0m9nvY"},
+  { id: 15,title: "Cut the ties", artist: "HAVET", genre: "Classic", img: "cuttheties.jpg", link: "https://youtu.be/VEMwqitiE-A?si=AxFcM-XbADr6E09S"},
 ]
 
