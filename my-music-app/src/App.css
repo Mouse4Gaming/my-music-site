@@ -1,9 +1,18 @@
+/* 確保瀏覽器預設的間距不會把你的 container 往內推 */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* 原理：確保 padding 不會撐開寬度，導致排版歪掉 */
+  box-sizing: border-box;
 }
 
+html, body, #root {
+  width: 100% !important;
+  min-height: 100%;
+  overflow-x: hidden; /* 防止出現左右捲軸 */
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+}
 .artist-name {
   font-size: 0.8rem;
   color: #888;
@@ -33,9 +42,12 @@ body {
     margin-bottom: 15px;  
     display: block;}
 .music-card {
-
     transition: transform 0.3s ease; 
-    cursor: pointer;                 
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;            
 }
 .music-card:hover {
     transform: translateY(-15px);    
@@ -88,7 +100,8 @@ body {
   display: flex;        
   flex-wrap: wrap;     
   gap: 20px;           
-  padding: 20px 0;
+  padding: 0 5%;
+  padding-bottom: 40%;
 }
 /* 分類標籤的容器 */
 .genre-filter {
@@ -279,7 +292,28 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  width: 100vw;       /* 使用 vw 確保寬度無視父層直接對準視窗 */
   min-height: 100vh;
+  position: relative; /* 強制脫離可能的父層限制，對準左上角 */
+  left: 0;
+  top: 0;
+  padding: 0 !important;
+  margin: 0!important;
+  overflow-y: auto;   /* 內容超過高度時產生捲動 */
+  overflow-x: hidden;
+  background: transparent;
+  background-attachment: scroll !important;
+  background-repeat: no-repeat; 
+}
+/* 確保根節點沒有預設的 margin/padding 把 container 往內推 */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;    /* 鎖定高度 */
+  overflow: hidden; /* 禁止瀏覽器層級的捲動 */
+}
+#root {
+height: 100%;
 }
 .music-toggle {
   position: fixed;
@@ -316,4 +350,53 @@ body {
 .volume-control input[type="range"] {
   cursor: pointer;
   accent-color: #1DB954;
+}
+.main-header {
+  padding: 20px 40px;
+}
+.genre-filter {
+  padding: 0 5%;
+  margin-bottom: 20px;
+}
+.top-clock {
+  position: absolute;
+  top: 20px;
+  right: 5%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.2rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 15px;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255,255, 0.2);
+  letter-spacing: 2px;
+  z-index: 100;
+}
+.info-widget {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255,255, 0.2);
+  color: white;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+}
+.background-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image:url('https://images.unsplash.com/photo-1606228281437-dc226988dc3a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover !important; 
+  background-position: center center;
 }

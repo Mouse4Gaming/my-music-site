@@ -3,18 +3,30 @@ import YouTube from 'react-youtube';
 import { musicData } from './data';
 import './App.css';
 // 零件範本 (印章)
+const Clock = () => { 
+  const [time, setTime] = React.useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+  return (
+    <div className="info-widget">
+      <div className="time-section">
+        {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+      </div>
+    </div>
+  );
+};
 function MusicCard({ title, img, link, artist,isFavorite, onToggleFavorite, onPlay }) {
   const handlePlay = () => {
     if (link) {
       onPlay(title);
-
       const cleanLink = link.split('&')[0];
       window.open(cleanLink, '_blank');
     } else {
       alert("這首歌暫時沒有播放連結喔！");
     }
   };
-
   return (
     <div className="music-card">
       <div className="img-container" onClick={handlePlay}>
@@ -42,12 +54,13 @@ function MusicCard({ title, img, link, artist,isFavorite, onToggleFavorite, onPl
 function App() {
   // 2.在app內設定狀態
   //def every situation
+
   const [volume, setVolume] = useState(20); // 預設值 20
    const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem('my-music-favorites');
     return saved ? JSON.parse(saved) : [];// 如果有存過就拿出來，沒有就給空陣列
   });
-      const [currentTrackName, setCurrentTrackName] = useState("NCS - 背景音樂");
+      const [currentTrackName, setCurrentTrackName] = useState("NCS Lo-fi music");
    const [activeGenre, setActiveGenre] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen,  setIsSidebarOpen] = useState(false);
@@ -89,8 +102,13 @@ const onReady = (event) => {
   }
 };
   const toggleMusic = () => {
-    if (isPlaying) playerRef.current.pauseVideo();
-  else playerRef.current.playVideo();
+    if (!playerRef.current) return;
+
+    if (isPlaying) {
+      playerRef.current.pauseVideo();
+    } else { 
+      playerRef.current.playVideo();
+    }
   setIsPlaying(!isPlaying);
 };
   const toggleFavorite = (id) => {
@@ -111,7 +129,9 @@ const onReady = (event) => {
   // 3. 過濾邏輯 (篩選器)
 
 <div className="container">
-        <YouTube videoId="kGW5XXYqXkY" opts={opts} onReady={onReady} />
+  <Clock />
+  <div className="background-fixed"></div>
+        <YouTube videoId="-DfHaOYeaqk" opts={opts} onReady={onReady} />
       <button className="music-toggle" onClick={toggleMusic}>{isPlaying ? '⏸' : '▶'}</button>  
   {/* 2. 側邊欄本體 */}
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
@@ -149,12 +169,12 @@ const onReady = (event) => {
             className="search-input"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} // 關鍵：打字時同步更新狀態
-          />
+          ></input>
         </div>
       </header>
 
       <nav className="genre-filter">
-        {['All', 'Favorite', 'Electronic', 'Rock', 'Lo-fi', 'Classic'].map(g => (
+        {['All', 'Favorite', 'Electronic', 'Rock', 'Lo-fi', 'Classic', 'Others'].map(g => (
           <span 
             key={g}
             className={`tag ${activeGenre === g ? 'active' : ''}`}

@@ -16,5 +16,11 @@ export const musicData = [
   { id: 13,title: "The other side of paradise", artist: "Glass animals", genre: "Rock", img: "paradise.jpg", link: "https://youtu.be/RMPX_vgqQnM?si=vCo9FcFMFmVPWLG4"},
   { id: 14,title: "Heat waves", artist: "Glass animals", genre: "Rock", img: "heatwaves.jpg", link: "https://youtu.be/pzeefqfSMjY?si=alFRq5Lm8F0m9nvY"},
   { id: 15,title: "Cut the ties", artist: "HAVET", genre: "Classic", img: "cuttheties.jpg", link: "https://youtu.be/VEMwqitiE-A?si=AxFcM-XbADr6E09S"},
+  { id: 16,title: "Cure for me", artist: "Aurora", genre: "Others", img: "cureforme.jpg", link: "https://www.youtube.com/watch?v=K17df81RL9Y"},
+  { id: 17,title: "One last kiss", artist: "宇多田ヒカル", genre: "Classic", img: "onelastkiss.jpg", link: "https://youtu.be/0Uhh62MUEic?si=hCv462etR8_PrFvA"},
+  { id: 18,title: "First love", artist: "宇多田ヒカル", genre: "Classic", img: "firstlove.jpg", link: "https://youtu.be/o1sUaVJUeB0?si=S4dbC0p6Wh62KSdT"},
+  { id: 19,title: "Mayonaka no Door〜stay with me", artist: "松原みき", genre:"Classic", img: "staywithme.jpg", link: "https://youtu.be/nuU2YHtxMik?si=KnpwU6_HTvxVOvcB"},
+  { id: 20,title: "Keep dancing to the music", artist: "Deane", genre:"Others", img: "keepdancing.jpg", link: "https://youtu.be/ukwIj8qbUuo?si=W2Vhf6e3u5-BRKGR"},
+  { id: 21,title: "Sayonara, Mata Itsuka!", artist: "米津玄師", genre:"Others", img: "sayonara.jpg", link: "https://youtu.be/-wb2PAx6aEs?si=d_azMVLwVdAFePvl"},
 ]
 
